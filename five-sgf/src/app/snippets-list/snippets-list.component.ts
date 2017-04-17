@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SgfService } from '../sgf.service';
 
 @Component({
   selector: 'app-snippets-list',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SnippetsListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sgfService: SgfService) {}
+  
+  sgfs = this.sgfService.getSgf();
 
   ngOnInit() {
   }

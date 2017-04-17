@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {MaterialModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AngularFireModule, 
   FIREBASE_PROVIDERS,
@@ -17,6 +18,10 @@ import { SnippetsListComponent } from './snippets-list/snippets-list.component';
 import { SgfSnippetComponent } from './sgf-snippet/sgf-snippet.component';
 import { GobanComponent } from './goban/goban.component';
 import { CommentSectionComponent } from './comment-section/comment-section.component';
+
+import { appRouting } from './app.routes';
+import { SgfService } from './sgf.service';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDK6OjN1sMvAScDO0zPi7dddz8AZjQ0aEI",
@@ -45,9 +50,10 @@ export const firebaseAuthConfig = {
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    appRouting
   ],
-  providers: [],
+  providers: [SgfService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

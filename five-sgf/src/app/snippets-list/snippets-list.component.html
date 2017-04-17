@@ -1,3 +1,6 @@
-<p>
-  snippets-list works!
-</p>
+<h1>snippets list component</h1>
+<md-list>
+    <md-list-item *ngFor="let sgf of sgfs">
+        <h3 md-line>{{sgf.name}}</h3>
+    </md-list-item>
+</md-list>
