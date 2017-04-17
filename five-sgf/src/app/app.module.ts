@@ -21,6 +21,7 @@ import { CommentSectionComponent } from './comment-section/comment-section.compo
 
 import { appRouting } from './app.routes';
 import { SgfService } from './sgf.service';
+import { AuthModule } from './auth/auth.module'
 
 
 export const firebaseConfig = {
@@ -51,6 +52,7 @@ export const firebaseAuthConfig = {
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule.forRoot(),
+    AuthModule,
     appRouting
   ],
   providers: [SgfService],
