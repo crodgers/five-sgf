@@ -25,12 +25,12 @@ import { AuthModule } from './auth/auth.module'
 
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyDK6OjN1sMvAScDO0zPi7dddz8AZjQ0aEI",
-    authDomain: "five-sgf.firebaseapp.com",
-    databaseURL: "https://five-sgf.firebaseio.com",
-    projectId: "five-sgf",
-    storageBucket: "five-sgf.appspot.com",
-    messagingSenderId: "84392188811"
+    apiKey: "AIzaSyDyJQVTQI-a-eW2iM70RXAcVHKDb0NP1Ek",
+    authDomain: "five-sgf-9804a.firebaseapp.com",
+    databaseURL: "https://five-sgf-9804a.firebaseio.com",
+    projectId: "five-sgf-9804a",
+    storageBucket: "five-sgf-9804a.appspot.com",
+    messagingSenderId: "1069340589649"
   };
   
 export const firebaseAuthConfig = {
@@ -52,10 +52,12 @@ export const firebaseAuthConfig = {
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     AuthModule,
     appRouting
   ],
   providers: [SgfService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
