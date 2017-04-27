@@ -11,9 +11,15 @@
       5GF
 
     <span class="app-toolbar-filler"></span>
-    <button class="app-icon-button">
+    <span *ngIf="userExists()">{{user.auth.displayName}}</span>
+    <button class="app-icon-button" [mdMenuTriggerFor]="menu">
       <i class="material-icons app-toolbar-menu">more_vert</i>
     </button>
+    <md-menu #menu="mdMenu">
+      <button (click)="openAuthDialog()">login</button>
+      <button (click)="logout()">logout</button>
+
+    </md-menu>
   </md-toolbar>
   <router-outlet></router-outlet>
 

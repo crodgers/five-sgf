@@ -21,7 +21,8 @@ import { CommentSectionComponent } from './comment-section/comment-section.compo
 
 import { appRouting } from './app.routes';
 import { SgfService } from './sgf.service';
-import { AuthModule } from './auth/auth.module'
+import { UserService } from "./user.service";
+import { AuthComponent } from './auth/auth.component'
 
 
 export const firebaseConfig = {
@@ -44,7 +45,8 @@ export const firebaseAuthConfig = {
     SnippetsListComponent,
     SgfSnippetComponent,
     GobanComponent,
-    CommentSectionComponent
+    CommentSectionComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -53,10 +55,12 @@ export const firebaseAuthConfig = {
     BrowserAnimationsModule,
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
-    AuthModule,
     appRouting
   ],
-  providers: [SgfService],
+  entryComponents: [
+    AuthComponent
+  ],
+  providers: [SgfService, UserService],
   bootstrap: [AppComponent]
 })
 

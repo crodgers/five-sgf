@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AuthProviders, AuthMethods } from 'angularfire2';
 import { MdDialogRef } from "@angular/material";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MdIconRegistry } from "@angular/material";
+import { UserService } from "../user.service";
 
 @Component({
   selector: 'app-auth',
@@ -12,19 +13,10 @@ import { MdIconRegistry } from "@angular/material";
 export class AuthComponent implements OnInit {
   user: {};
   constructor(
-    public af: AngularFire,
+    private userService: UserService,
     private dialogRef: MdDialogRef<AuthComponent>,
     sanitizer: DomSanitizer,
     iconReg: MdIconRegistry) {
-      this.af.auth.subscribe(user => {
-        if (user) {
-          this.dialogRef.close(user);
-        }
-        else {
-          this.user = {}
-        }
-      });
-
       iconReg.addSvgIcon('googleAuth', sanitizer.bypassSecurityTrustResourceUrl('../../assets/google-circle.svg'))
         .addSvgIcon('facebookAuth', sanitizer.bypassSecurityTrustResourceUrl('../../assets/facebook_circle_black.svg'))
         .addSvgIcon('githubAuth', sanitizer.bypassSecurityTrustResourceUrl('../../assets/github.svg'))
@@ -32,11 +24,19 @@ export class AuthComponent implements OnInit {
      }
 
   ngOnInit() {
-  }
+    this.userService.af.auth.subscribe(user => {
+      if(user) {
+        this.user = user;
+      } else {
+        this.user = {};
+      }
+    });
+   }
 
-  login(loginConfig) {
-    this.af.auth.login(loginConfig);
-  }
+   login(loginConfig) {
+     this.userService.loginUser(loginConfig);
+     this.dialogRef.close(this.user);
+   }
 
   google_login() {
     this.login({
