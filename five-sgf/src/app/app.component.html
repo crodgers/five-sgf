@@ -12,15 +12,39 @@
 
     <span class="app-toolbar-filler"></span>
     <span *ngIf="userExists()">{{user.auth.displayName}}</span>
-    <button class="app-icon-button" [mdMenuTriggerFor]="menu">
+    <button class="app-icon-button" [mdMenuTriggerFor]="aboutMenu">
       <i class="material-icons app-toolbar-menu">more_vert</i>
     </button>
-    <md-menu #menu="mdMenu">
-      <button (click)="openAuthDialog()">login</button>
-      <button (click)="logout()">logout</button>
+    <md-menu #aboutMenu="mdMenu">
+      <button md-menu-item color="accent"
+              (click)="openAuthDialog()"
+              *ngIf="!userExists()">
+        Login
+      </button>
+      <button md-menu-item color="accent"
+              (click)="logout()"
+              *ngIf="userExists()">
+        Logout
+      </button>
 
     </md-menu>
   </md-toolbar>
   <router-outlet></router-outlet>
+
+  <md-menu #featureMenu="mdMenu">
+    <button md-menu-item
+            color="accent"
+            *ngIf="userExists()">
+      Add
+    </button>
+
+  </md-menu>
+
+  <button md-fab 
+          id="featureMenu"
+          [mdMenuTriggerFor]="featureMenu">
+              
+    <i class="material-icons app-toolbar-menu">more_vert</i>
+  </button>
 
 </md-sidenav-container>

@@ -28,3 +28,14 @@
   padding: 0 14px 0 14px;
   color: white;
 }
+
+router-container {
+  layout-align: "center center";
+  layout: row;
+}
+
+#featureMenu{
+  position:absolute;
+  bottom:10px;
+  right:10px;
+}

@@ -19,16 +19,20 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "assets/wgo.player.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/wgo.min.js",
+        "assets/wgo.player.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
     }
-  ],
+  ], 
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"

@@ -5,7 +5,7 @@ import { AuthComponent } from "./auth/auth.component";
 import { SgfService } from './sgf.service';
 import { UserService } from './user.service';
 import { MdDialog, MdDialogRef, MdDialogConfig } from "@angular/material";
-import { AngularFire } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 
 
 @Component({
@@ -19,11 +19,11 @@ export class AppComponent implements OnInit {
   constructor(
     public dialog: MdDialog,
     public viewRef: ViewContainerRef,
-    public af: AngularFire,
+    public af: AngularFireModule,
     public userService: UserService) {}
   
     ngOnInit() {
-      this.userService.af.auth.subscribe(user => {
+      this.userService.authState.subscribe(user => {
         if(user) {
           this.user = user;
         } else {
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     }
 
     logout() {
-      this.af.auth.logout(); 
+      this.userService.signOut()
       this.user = {};
     }
 

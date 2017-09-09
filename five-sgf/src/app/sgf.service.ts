@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class SgfService {
   sgfs: any[] = [
   {
     name: 'test sgf 1',
-    owner: 'some guy',
+    sgfData: "this is a string in place of real data",
+    dateCreated: 125468728,
+    public: false,
     comments: [
         'comment 1',
         'comment 2',
@@ -15,7 +19,9 @@ export class SgfService {
   },
   {
     name: 'test sgf 2',
-    owner: 'some other guy',
+    sgfData: "this is a string in place of real data",
+    dateCreated: 125468728,
+    public: false,
     comments: [
         'comment 1',
         'comment 2',
@@ -24,7 +30,9 @@ export class SgfService {
   },
   {
     name: 'test sgf 3',
-    owner: 'some third guy',
+    sgfData: "this is a string in place of real data",
+    dateCreated: 125468728,
+    public: false,
     comments: [
         'comment 1',
         'comment 2',
@@ -33,7 +41,9 @@ export class SgfService {
   },
   {
     name: 'test sgf 4',
-    owner: 'some last guy',
+    sgfData: "this is a string in place of real data",
+    dateCreated: 125468728,
+    public: false,
     comments: [
         'comment 1',
         'comment 2',
@@ -41,8 +51,8 @@ export class SgfService {
       ]
   }
 ]
-  constructor() { }
-    getSgf(): any[] {
-        return this.sgfs;
+  constructor(public db: AngularFireDatabase) { }
+    getSgf(uid): FirebaseListObservable<any> {
+        return this.db.list(uid);
     }
 }

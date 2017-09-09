@@ -1,6 +1,14 @@
-<h1>snippets list component</h1>
-<md-list>
-    <md-list-item *ngFor="let sgf of sgfs">
-        <h3 md-line>{{sgf.name}}</h3>
-    </md-list-item>
-</md-list>
+<!-- <h1>snippets list component</h1> -->
+<div id="snippets_container" class="flex-container" fxLayout="row" fxLayoutAlign="center start">
+    <md-list>
+        <md-card *ngFor="let sgf of sgfs | async" class="summary-card">
+            <md-card-title-group>Title</md-card-title-group>
+            <md-card-title md-line>{{sgf.name}}</md-card-title>
+            <md-card-subtitle md-line>{{sgf.created | date}}</md-card-subtitle>
+            <md-card-content>
+                <div id="board">
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-list>
+</div>

@@ -4,14 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {MaterialModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
+import { AngularFireDatabaseModule,
+  AngularFireDatabase,
+  FirebaseListObservable
+} from 'angularfire2/database';
 
-import { AngularFireModule, 
-  FIREBASE_PROVIDERS,
-  AngularFire,
-  AuthMethods,
-  AuthProviders
-} from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import {
+  AngularFireAuth,
+  AngularFireAuthModule,
+} from 'angularfire2/auth'
+
+import { RouterModule, Routes } from '@angular/router';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppComponent } from './app.component';
 import { SnippetsListComponent } from './snippets-list/snippets-list.component';
@@ -22,7 +27,8 @@ import { CommentSectionComponent } from './comment-section/comment-section.compo
 import { appRouting } from './app.routes';
 import { SgfService } from './sgf.service';
 import { UserService } from "./user.service";
-import { AuthComponent } from './auth/auth.component'
+import { AuthComponent } from './auth/auth.component';
+import { GoBoardDirective } from './go-board.directive'
 
 
 export const firebaseConfig = {
@@ -33,11 +39,6 @@ export const firebaseConfig = {
     storageBucket: "five-sgf-9804a.appspot.com",
     messagingSenderId: "1069340589649"
   };
-  
-export const firebaseAuthConfig = {
-  provider: AuthProviders.Anonymous,
-  method: AuthMethods.Anonymous
-}
 
 @NgModule({
   declarations: [
@@ -46,15 +47,19 @@ export const firebaseAuthConfig = {
     SgfSnippetComponent,
     GobanComponent,
     CommentSectionComponent,
-    AuthComponent
+    AuthComponent,
+    GoBoardDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    MaterialModule,
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(firebaseConfig, 'five-sgf'),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     appRouting
   ],
   entryComponents: [

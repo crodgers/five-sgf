@@ -1,0 +1,18 @@
+:host {
+    width: 60%;
+}
+
+#board {
+    z-index: 1;
+    width: 300px;
+    height: 300px;
+}
+
+.summary-card {
+    width: 300px;
+}
+
+snippets-container {
+    width: 60%;
+    
+}
