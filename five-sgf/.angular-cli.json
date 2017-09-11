@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "assets/wgo.player.css"
+        "assets/wgo.player.css",
+        "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
       ],
       "scripts": [
         "assets/wgo.min.js",
